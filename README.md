@@ -26,7 +26,7 @@ java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
 
 # request/response
 java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
-    lin.louis.poc.rsocket.client.AddNumberFnFClient
+    lin.louis.poc.rsocket.client.SayHelloClient
 
 # request / stream
 java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
