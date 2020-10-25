@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>lin.louis.poc</groupId>
+    <artifactId>poc-rsocket</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>poc-rsocket</name>
+    <description>POC RSocket</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>domain</module>
+
+        <module>adapter/controller</module>
+
+        <module>application/vanilla-server</module>
+        <module>application/spring-boot-app</module>
+
+        <module>client/vanilla-client</module>
+        <module>client/spring-boot-client</module>
+    </modules>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- DEPENDENCIES -->
+        <logback.version>1.2.3</logback.version>
+        <lombok.version>1.18.12</lombok.version>
+        <reactor-bom.version>Dysprosium-SR12</reactor-bom.version>
+        <rsocket-bom.version>1.0.2</rsocket-bom.version>
+        <slf4j.version>1.7.30</slf4j.version>
+
+        <!-- MAVEN DEPENDENCIES -->
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- BOM -->
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-bom</artifactId>
+                <version>${reactor-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.rsocket</groupId>
+                <artifactId>rsocket-bom</artifactId>
+                <version>${rsocket-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- DEPENDENCIES -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

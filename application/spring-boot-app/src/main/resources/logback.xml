@@ -1,0 +1,17 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%cyan(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level %logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="lin.louis.poc" level="DEBUG"/>
+    <logger name="io.rsocket.FrameLogger" level="INFO"/>
+    <logger name="reactor.netty" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
