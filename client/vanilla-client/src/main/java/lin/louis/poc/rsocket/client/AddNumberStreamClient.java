@@ -22,14 +22,17 @@ public class AddNumberStreamClient {
         int step = new SecureRandom().nextInt(10);
         CountDownLatch latch = new CountDownLatch(1);
 
+        int max = 20;
+        int limitRate = 10;
+        LOGGER.info("Taking {} items with limit rate set to {}", max, limitRate);
         rsocket.requestStream(DefaultPayload.create(BigInteger.valueOf(step).toByteArray()))
                 // backpressure by limiting to 8 requests (= 75% of 10)
-                .limitRate(10)
+                .limitRate(limitRate)
                 .doOnRequest(ignored -> LOGGER.info("Sent number {}", step))
                 .map(PayloadMapper::toInt)
                 .doOnNext(i -> LOGGER.info("Received number {}", i))
                 .doOnError(t -> LOGGER.error(t.getMessage(), t))
-                .take(20)
+                .take(max)
                 .doFinally(signalType -> {
                     rsocket.dispose();
                     latch.countDown();

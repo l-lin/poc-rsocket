@@ -20,7 +20,7 @@ public class AddNumberFnFClient {
         int nb = new SecureRandom().nextInt(100);
 
         rsocket.fireAndForget(DefaultPayload.create(BigInteger.valueOf(nb).toByteArray()))
-                .doOnRequest(ignored -> LOGGER.info("Sent number {}", nb))
+                .doOnSuccess(ignored -> LOGGER.info("Sent number {}", nb))
                 .doOnError(t -> LOGGER.error(t.getMessage(), t))
                 .block();
     }

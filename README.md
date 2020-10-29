@@ -24,7 +24,7 @@ Several clients to showcase the RSocket models:
 java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
     lin.louis.poc.rsocket.client.AddNumberFnFClient
 
-# request/response
+# request / response
 java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
     lin.louis.poc.rsocket.client.SayHelloClient
 
@@ -35,6 +35,16 @@ java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
 # request / channel
 java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
     lin.louis.poc.rsocket.client.CountEvenNumbersClient
+```
+
+Using [RSocket Client CLI](https://github.com/making/rsc):
+
+```bash
+# request / response with TCP
+rsc tcp://localhost:7000 --debug --request --data everyone
+
+# request / response with WebSocket
+rsc ws://localhost:7001 --debug --request --data everyone
 ```
 
 ## Running spring-boot-app
