@@ -40,11 +40,25 @@ java -cp client/vanilla-client/target/vanilla-client-jar-with-dependencies.jar \
 Using [RSocket Client CLI](https://github.com/making/rsc):
 
 ```bash
-# request / response with TCP
+# With TCP
+# fire & forget
+rsc tcp://localhost:7000 --debug --fnf --data 2
+
+# request / response
 rsc tcp://localhost:7000 --debug --request --data everyone
 
-# request / response with WebSocket
+# request / stream
+rsc tcp://localhost:7000 --debug --stream --data 2
+
+# With WebSocket
+# fire & forget
+rsc ws://localhost:7001 --debug --fnf --data 2
+
+# request / response
 rsc ws://localhost:7001 --debug --request --data everyone
+
+# request / stream
+rsc ws://localhost:7001 --debug --stream --data 2
 ```
 
 ## Running spring-boot-app
@@ -67,3 +81,16 @@ At the time of writing this POC, I did not find anything about supporting reques
 in Spring framework unfortunately.
 
 However, routing is seamlessly supported by Spring with its `@MessageMapping` annotation.
+
+Using [RSocket Client CLI](https://github.com/making/rsc):
+
+```bash
+# fire & forget
+rsc tcp://localhost:7002 --debug --fnf --data 2 --route add-number
+
+# request / response
+rsc tcp://localhost:7002 --debug --request --data everyone --route say-hello
+
+# request / stream
+rsc tcp://localhost:7002 --debug --stream --data 2 --route add-number-stream
+```

@@ -3,4 +3,4 @@ spring:
     lazy-initialization: true
   rsocket:
     server:
-      port: 7001
+      port: 7002

@@ -1,10 +1,10 @@
 package lin.louis.poc.rsocket.client;
 
+import io.rsocket.Payload;
 import io.rsocket.RSocket;
 import io.rsocket.core.RSocketConnector;
 import io.rsocket.transport.netty.client.TcpClientTransport;
 import io.rsocket.util.DefaultPayload;
-import lin.louis.poc.rsocket.domain.mapper.PayloadMapper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigInteger;
@@ -29,7 +29,8 @@ public class AddNumberStreamClient {
                 // backpressure by limiting to 8 requests (= 75% of 10)
                 .limitRate(limitRate)
                 .doOnRequest(ignored -> LOGGER.info("Sent number {}", step))
-                .map(PayloadMapper::toInt)
+                .map(Payload::getDataUtf8)
+                .map(Integer::parseInt)
                 .doOnNext(i -> LOGGER.info("Received number {}", i))
                 .doOnError(t -> LOGGER.error(t.getMessage(), t))
                 .take(max)

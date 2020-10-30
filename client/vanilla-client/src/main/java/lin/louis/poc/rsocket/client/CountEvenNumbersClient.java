@@ -5,7 +5,6 @@ import io.rsocket.RSocket;
 import io.rsocket.core.RSocketConnector;
 import io.rsocket.transport.netty.client.TcpClientTransport;
 import io.rsocket.util.DefaultPayload;
-import lin.louis.poc.rsocket.domain.mapper.PayloadMapper;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
@@ -49,7 +48,7 @@ public class CountEvenNumbersClient {
                                 .doOnError(t -> LOGGER.error(t.getMessage(), t))
                                 .subscribe();
                     } else {
-                        int i = PayloadMapper.toInt(payload);
+                        int i = Integer.parseInt(payload.getDataUtf8());
                         LOGGER.info("Received nb even numbers: {}", i);
                     }
                 });
