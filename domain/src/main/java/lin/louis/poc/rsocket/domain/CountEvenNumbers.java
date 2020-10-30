@@ -46,7 +46,7 @@ public class CountEvenNumbers {
                 LOGGER.info("Done");
             }
         });
-        // every 3 seconds, send the total number computed to the subscribers
+        // every 2 seconds, send the total number computed to the subscribers
         // ex to simulate a long process in the server
         return Flux.interval(Duration.ofSeconds(2))
                 .map(i -> {
