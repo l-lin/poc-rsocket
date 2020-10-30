@@ -50,9 +50,6 @@ public class CountEvenNumbers {
         // ex to simulate a long process in the server
         return Flux.interval(Duration.ofSeconds(2))
                 .map(i -> {
-                    if (i % 2 == 0) {
-                        nb.incrementAndGet();
-                    }
                     int total = nb.get();
                     LOGGER.info("Sending total nb: {}", total);
                     return total;
