@@ -30,7 +30,7 @@ public class CountEvenNumbersClient {
                 .map(ignored -> random.nextInt(100))
                 .map(nb -> {
                     LOGGER.info("Sent number {}", nb);
-                    return DefaultPayload.create(BigInteger.valueOf(nb).toByteArray());
+                    return DefaultPayload.create(Integer.toString(nb));
                 });
 
         rsocket.requestChannel(publisher)

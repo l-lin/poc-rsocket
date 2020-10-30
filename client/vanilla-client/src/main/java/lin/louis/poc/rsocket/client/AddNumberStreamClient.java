@@ -25,7 +25,7 @@ public class AddNumberStreamClient {
         int max = 20;
         int limitRate = 10;
         LOGGER.info("Taking {} items with limit rate set to {}", max, limitRate);
-        rsocket.requestStream(DefaultPayload.create(BigInteger.valueOf(step).toByteArray()))
+        rsocket.requestStream(DefaultPayload.create(Integer.toString(step)))
                 // backpressure by limiting to 8 requests (= 75% of 10)
                 .limitRate(limitRate)
                 .doOnRequest(ignored -> LOGGER.info("Sent number {}", step))
